@@ -8,8 +8,14 @@ spam-filter
  - Naïve bayes algorithm(why is it called naïve and how does it work?)
   - different types (gaussian,multinomial,bernoulli,ou-of-core (how do they differ?))
  - Supervised learning (what is it? how's it different from unsupervised learning?)
-
-
+ - Confusion Matrix (what is it? what does it say?)
+ - How well did our model do? There are many ways to measure it:
+  - accuracy
+  - precision
+  - recall
+  - f1
+ - bias/variance tradeoff (maybe talk about this, not sure)
+ - overfitting/underfitting
 ### Useful References
 
  - TWO DIMENSIONAL GAUSSIAN
