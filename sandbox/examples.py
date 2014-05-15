@@ -1,4 +1,9 @@
-from sklearn import datasets
+import numpy as np 
 
-iris = datasets.load_iris()
-print iris.keys()
+
+m = np.loadtxt(open("../original_data/spambase.data","rb"),delimiter=',')
+
+x = m[:,1:]
+y = m[:,-1:]
+
+print y.shape
