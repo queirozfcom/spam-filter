@@ -31,6 +31,12 @@
 
 1, 0.    | spam, non-spam classes
 
+
+
+
+
+
+
 word_freq_make:         continuous.
 word_freq_address:      continuous.
 word_freq_all:          continuous.
