@@ -41,3 +41,9 @@ def	take_p_attribute(data_matrix,attribute_index,spam_index):
 	p_ham = 1 - p_spam
 
 	return (p_attribute_spam * p_spam) + (p_attribute_ham * p_ham) 
+
+def attribute_in_row(row,attribute_index):
+	return (row[attribute_index] != 0)
+
+def attribute_not_in_row(row,attribute_index):
+	return not attribute_in_row(row,attribute_index)

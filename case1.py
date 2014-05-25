@@ -32,23 +32,24 @@ for i in xrange(NUMBER_OF_ROUNDS):
     else:
         guess = 0
 
-    hits = 0
-    misses = 0
+    hits = 0.0
+    misses = 0.0
 
     # now we test the hypothesis against the test set
     for row in test_set:
-        if(row[CASE_1_ATTRIBUTE_INDEX] == 0):
+
+        if(nb.attribute_not_in_row(row,CASE_1_ATTRIBUTE_INDEX)):
             if(row[SPAM_ATTR_INDEX] != guess):
                 hits += 1
             else:
                 misses += 1
-        elif(row[CASE_1_ATTRIBUTE_INDEX] != 0):
+        elif(nb.attribute_in_row(row,CASE_1_ATTRIBUTE_INDEX)):
             if(row[SPAM_ATTR_INDEX] == guess):
                 hits += 1
             else:
                 misses += 1
 
-    accuracy = float(hits)/float(hits+misses)
+    accuracy = hits/(hits+misses)
 
     accuracy_in_each_turn.append(accuracy)
 
