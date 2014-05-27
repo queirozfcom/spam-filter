@@ -1,9 +1,6 @@
 def take_p_char_spam(data_matrix,char_index,spam_index):
 	# probability of e-mail having a char given that it's spam
-	try:
-		spam_having_char = len(filter(lambda x: x[char_index] != 0 and x[spam_index] == 1 ,data_matrix))
-	except IndexError:
-		print data_matrix.shape
+	spam_having_char = len(filter(lambda x: x[char_index] != 0 and x[spam_index] == 1 ,data_matrix))
 	spam = len(filter(lambda x: x[spam_index] == 1 ,data_matrix))
 	 
 	return (float(spam_having_char)/float(spam))
