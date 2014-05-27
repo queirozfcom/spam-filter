@@ -1,6 +1,6 @@
 #constants to be used to easily customize the algorithms
 
-NUMBER_OF_ROUNDS = 10
+NUMBER_OF_ROUNDS = 5
 
 # 0-based
 CASE_1_ATTRIBUTE_INDEX = 51

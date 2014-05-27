@@ -14,10 +14,13 @@ accuracy_in_each_turn = list()
 
 m = numpy.loadtxt(open("original_data/spambase.data","rb"),delimiter=',')
 
-for i in xrange(NUMBER_OF_ROUNDS):
-    shuffled = numpy.random.permutation(m)
+shuffled = numpy.random.permutation(m)
 
-    train_set,test_set = prep.split_sets(shuffled,TRAIN_TEST_RATIO)
+for i in xrange(NUMBER_OF_ROUNDS):
+
+    # we're using cross-validation so each iteration we take a different
+    # slice of the data to serve as test set
+    train_set,test_set = prep.split_sets(shuffled,TRAIN_TEST_RATIO,i)
 
     p_char_spam = nb.take_p_char_spam(train_set,CASE_1_ATTRIBUTE_INDEX,SPAM_ATTR_INDEX)
     p_spam = nb.take_p_spam(train_set,SPAM_ATTR_INDEX)
