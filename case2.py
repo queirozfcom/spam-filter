@@ -35,9 +35,6 @@ def case2():
             p_char_spam = nb.take_p_char_spam(train_set,CASE_2_ATTRIBUTE_INDEX[j],SPAM_ATTR_INDEX)
             p_char = nb.take_p_attribute(train_set,CASE_2_ATTRIBUTE_INDEX[j],SPAM_ATTR_INDEX)
 
-            # whichever is greater - that will be our prediction
-
-            
             if j == 0:
                 total_p_char_spam = p_char_spam
             else:
@@ -46,8 +43,10 @@ def case2():
 
         p_spam = nb.take_p_spam(train_set,SPAM_ATTR_INDEX)
         total_p_spam_char = (total_p_char_spam * p_spam) / p_char
-        p_ham_char = 1 - total_p_spam_char
-                    
+        total_p_ham_char = 1 - total_p_spam_char
+        
+        # whichever is greater - that will be our prediction
+
         if total_p_spam_char > total_p_ham_char:
             guess = 1
         else:
