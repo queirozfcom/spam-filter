@@ -1,8 +1,8 @@
 spam-filter
 ===========
 
+
 ### KEYWORDS (we should use them (explaining them would be better actually) in our report to ensure high marks)
- - MAP (maximum a priori) (what is it and what it's used for?)
  - Curse of dimensionality (what is it?)
  - Bayes' theorem (quick explanation)
  - Naïve bayes algorithm(why is it called naïve and how does it work?)
@@ -30,5 +30,7 @@ spam-filter
  - SPAM ASSASSIN
   - http://spamassassin.apache.org/
 
- - MAXIMUM A PRIORI
-  - http://ttic.uchicago.edu/~gregory/courses/wis-ml2013/mapslides.pdf
+ - MLE
+  - https://files.nyu.edu/mrg217/public/mle_introduction1.pdf
+
+

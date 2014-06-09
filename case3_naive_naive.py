@@ -81,13 +81,13 @@ def case3():
     variance_accuracy = numpy.var(accuracy_in_each_turn)
 
     print ''
-    print 'CASE 2 - TEN ATTRIBUTES'
+    print 'CASE 3 - ALL ATTRIBUTES'
     print 'MEAN_ACCURACY: '+str(mean_accuracy)
     print 'POP. STD. DEV. OF ACCURACY: '+str(std_dev_accuracy)
     print 'POP. VARIANCE OF ACCURACY: '+str(variance_accuracy)
     print ''
 
-case2()
+case3()
 
 
     

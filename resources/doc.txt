@@ -1,0 +1,218 @@
+Usando Aprendizado por Máquina para Detecção de Spam
+
+
+
+Avaliação de Desempenho
+2014/01
+
+DCC/UFRJ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introdução
+Teorema de Bayes
+Verossimilhança
+O conjunto de dados Spambase
+Métricas
+Accuracy
+Precision
+Recall
+Matriz de Confusão (Confusion Matrix)
+Método
+Naïve Bayes
+Cross-validation
+Esquema geral do algoritmo
+Caso 1: apenas uma feature
+Caso 2: dez features
+Caso 3: todas as features
+Critério de previsão
+Problemas
+Referências
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introdução
+
+
+
+Na maioria dos cursos de estatística, estamos interessados em amostrar um conjunto de dados dada uma certa distribuição. Por exemplo:
+
+“Sabendo que as idades de homens em uma cidade apresenta uma distribição normal com parâmetros e 2 (média e variância, respectivamente), qual é a probabilidade de, com um sorteio não viciado, sortearmos um homem que mede entre 1.80 e 1.90 metros?” 
+
+Ou seja, dado um modelo de distribuição e seus parâmetros, queremos obter uma amostra dos dados.
+
+Por outro lado, em um problema como a detecção de spam, onde queremos saber a probabilidade de um e-mail ser spam dado que ele contém uma (ou mais) palavras, estamos interessados em algo ligeiramente diferente:
+
+ “Com uma massa de dados (amostrais) nos informando sobre a existência de certas palavras em e-mails juntamente com a classificação daquele e-mail em spam ou ham (não-spam) e uma sugestão sobre o modelo de distribuição destes dados (normal, poisson, etc), quais são os parâmetros mais prováveis da distribuição para que uma amostra aleatória seja igual aos resultados obtidos por mim?”
+
+Em outras palavras, dada uma amostra e o modelo distribuição da população, quais os parâmetros da distribuição?
+
+Este problema é chamado de problema da probabilidade inversa (inverse probability problem) e será nosso foco de estudo neste trabalho.
+
+
+Teorema de Bayes
+
+O teorema de Bayes é um artifício que iremos usar para relacionar probabilidades condicionais e tirar conclusões baseadas nas mesmas.
+
+Na sua forma mais simples, o teorema de Bayes diz que 
+
+p(x|y) =p(y|x)  p(x)p(y)    (i)
+
+Note que o denominador pode ser calculado a partir do teorema da probabilidade total:
+
+p(y) = i=1p(y|xi)p(xi) 
+
+Para o nosso domínio específico, iremos pensar nos operandos da seguinte forma:
+
+p(modelo | dados) =p(dados | modelo)  p(modelo) p(dados)    (ii)
+
+Note que, como estamos trabalhando com um único conjunto de dados, o denominador da equação (ii) pode ser ignorado, pois ele sempre será igual o mesmo conjunto de dados:
+
+     p(modelo|dados) ∝ p(modelo) p(dados|modelo)     (iii)
+
+ou, de forma análoga,
+
+p(modelo|dados) =p(modelo)p(dados) p(dados|modelo)        (iv)
+
+Porém, para uma observação, p(modelo)é fixo então podemos dizer que o primeiro operando é uma função que só depende dos dados (que chamaremos de k(dados)), logo:
+p(modelo|dados) = k(dados) p(dados|modelo)     (v)  
+
+Verossimilhança
+
+O conceito de verossimilhança (em inglês, likelihood) é central para este trabalho.
+
+Dada uma distribuição de probabilidades, a verossimilhança de um modelo  (conjunto de parâmteros da distribuição) considerando-se dados x é igual à probabilidade de obtermos esses resultados dado aquele modelo, ou seja:
+
+L (|x) = P(x|)     (vi)
+
+Ou, para o nosso exemplo:
+
+ L (modelo|dados) = P(dados|modelo)   (vii)
+
+Se o nosso objetivo for descobrir o modelo (parâmetros de uma dada distribuição) que maximiza a likelihood de observarmos os dados que observamos então, uma vez
+
+
+
+O conjunto de dados Spambase
+
+O conjunto de dados usado neste trabalho é o spambase. Ele consiste de 4601 instâncias, das quais 1813 (ou 39.4%) são spam.
+
+O conjunto está disponível em um arquivo CSV, composto de 4601 linhas (uma para cada instância) com 57 atributos e uma variável objetivo em cada uma.
+
+Os 57 atributos são:
+
+48 atributos numéricos, cada um representando a proporção das palavras do e-mail que são iguais à palavra-teste;
+6 atributos numéricos, cada um representando a proporção de palavras do e-mail que são iguais ao caracter-teste;
+1 atributo numérico representando o tamanho médio de sequências de letras maiúsculas encontradas no e-mail;
+1 atributo numérico representando o tamanho da maior sequência formada por letras maiúsculas no e-mail;
+1 atributo numérico representando o tamanho total de sequências de letras maiúsculas no e-mail.
+
+Além desses, há um último atributo em cada instância que é a variável objetivo, com valor 1 se o e-mail representado por spam e 0 caso contrário (ham).
+
+Este dataset pode ser obtido em https://archive.ics.uci.edu/ml/datasets/Spambase.
+
+Métricas
+
+Várias métricas podem ser utilizadas para a avaliação de uma dada estratégica de aprendizado por máquina. O quadro a seguir mostra algumas delas:
+
+
+
+
+
+Accuracy
+
+Nº de instâncias avaliadas corretamenteNº de instâncias
+
+Precision
+
+Nº de instâncias corretamente avaliadas como spamNº de instâncias spam 
+
+Recall
+
+Nº de instâncias corretamente avaliadas como spam  Nº de instâncias avaliadas como spam
+
+
+Matriz de Confusão (Confusion Matrix)
+
+TODO
+
+Método
+
+
+Naïve Bayes
+
+O que é, qual sua relação com teorema de Bayes, pq ele é chamado de naïve, pq ele é bom para esse problema de spam.
+
+Cross-validation
+
+O que é, para que serve
+
+Esquema geral do algoritmo
+
+Caso 1: apenas uma feature
+
+Dada uma feature (neste caso, uma palavra no email), verificamos a presença da mesma em todos os e-mails.
+
+Caso 2: dez features
+
+Caso 3: todas as features
+
+Critério de previsão
+Problemas
+
+Referências
+
+https://archive.ics.uci.edu/ml/datasets/Spambase
+http://en.wikipedia.org/wiki/Likelihood_function
+http://en.wikipedia.org/wiki/Bayes'_theorem
+http://en.wikipedia.org/wiki/Normal_distribution
+http://en.wikipedia.org/wiki/Proportionality_(mathematics)
+http://en.wikipedia.org/wiki/Covariance
+http://en.wikipedia.org/wiki/Covariance_matrix
+http://people.physics.anu.edu.au/~tas110/Teaching/Lectures/L3/Material/Myung03.pdf
+https://files.nyu.edu/mrg217/public/mle_introduction1.pdf
+https://www.cs.princeton.edu/courses/archive/spring08/cos424/scribe_notes/0214.pdf
+https://inst.eecs.berkeley.edu/~cs188/sp12/slides/cs188%20lecture%2020%20--%20naive%20bayes%206PP.pdf
+http://www.cs.cmu.edu/~tom/10601_sp08/slides/recitation-mle-nb.pdf
+http://www.cs.cornell.edu/courses/cs578/2003fa/performance_measures.pdf
+http://www.slideshare.net/nicbet/computing-accuracy-precision-and-recall-presentation
+
+
+
+
+
+
+
