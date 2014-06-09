@@ -62,9 +62,9 @@ def case2():
             # ou seja, o produto de todas as prob. condicionais das palavras dada a classe   
             # eu sei que ta meio confuso, mas se olhar com cuidado eh bonito fazer isso tudo numa linha soh! =)         
             product_of_all_conditional_probs_spam = reduce(lambda acc,cur: acc * stats.norm(sample_means_word_spam[cur], sample_std_devs_spam[cur]).pdf(row[CASE_2_ATTRIBUTE_INDEXES[cur]]) , xrange(10), 1)
-
             # nao precisa dividir pelo termo de normalizacao pois so queremos saber qual e o maior!
             posterior_spam = prior_spam * product_of_all_conditional_probs_spam
+
 
             product_of_all_conditional_probs_ham = reduce(lambda acc,cur: acc * stats.norm(sample_means_word_ham[cur], sample_std_devs_ham[cur]).pdf(row[CASE_2_ATTRIBUTE_INDEXES[cur]]) , xrange(10), 1)
             posterior_ham = prior_ham * product_of_all_conditional_probs_ham

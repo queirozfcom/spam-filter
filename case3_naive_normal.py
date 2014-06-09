@@ -6,17 +6,20 @@ import sys
 import lib.naive_bayes as nb 
 import lib.preprocessing as prep
 import lib.validation as valid
+import lib.normalization as normal
 
 from config.constants import *
 
 
 def case2():
 
+    m = np.loadtxt(open("original_data/spambase.data","rb"),delimiter=',')
+    
+    normalized_m = normal.normalize(m,SPAM_ATTR_INDEX)
+    
     accuracy_in_each_turn = list()
 
-    m = np.loadtxt(open("original_data/spambase.data","rb"),delimiter=',')
-
-    shuffled = np.random.permutation(m)
+    shuffled = np.random.permutation(normalized_m)
 
     valid.validate_cross_validation(NUMBER_OF_ROUNDS,TRAIN_TEST_RATIO)
 
@@ -31,16 +34,16 @@ def case2():
         # slice of the data to serve as test set
         train_set,test_set = prep.split_sets(shuffled,TRAIN_TEST_RATIO,i)
 
-
         #parameter estimation
-        #but now we take 10 attributes into consideration
+        #but now we take ALL attributes into consideration
         sample_means_word_spam = list()
         sample_means_word_ham = list()
 
         sample_variances_word_spam = list()
         sample_variances_word_ham = list()
 
-        for attr_index in CASE_2_ATTRIBUTE_INDEXES:
+        # all but the last one
+        for attr_index in xrange(57):
 
             sample_means_word_spam.append(nb.take_mean_spam(train_set,attr_index,SPAM_ATTR_INDEX))
             sample_means_word_ham.append(nb.take_mean_ham(train_set,attr_index,SPAM_ATTR_INDEX))
@@ -90,7 +93,7 @@ def case2():
 
 
     print ''
-    print 'CASE 2 - TEN ATTRIBUTES - USING NORMAL MODEL'
+    print 'CASE 3 - ALL ATTRIBUTES - USING NORMAL MODEL'
     print 'MEAN_ACCURACY: '+str(mean_accuracy)
     print 'STD. DEV. OF ACCURACY: '+str(std_dev_accuracy)
     print 'VARIANCE OF ACCURACY: '+str(variance_accuracy)
