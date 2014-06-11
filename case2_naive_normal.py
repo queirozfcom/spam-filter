@@ -13,6 +13,8 @@ from config.constants import *
 def case2():
 
     accuracy_in_each_turn = list()
+    precision_in_each_turn = list()
+    recall_in_each_turn = list()
 
     m = np.loadtxt(open("original_data/spambase.data","rb"),delimiter=',')
 
@@ -56,6 +58,15 @@ def case2():
         hits = 0.0
         misses = 0.0
 
+        #number of correctly evaluated instances as spam
+        correctly_is_spam = 0.0
+
+        #number of spam instances
+        is_spam = 0.0
+
+        #number of evaluated instances como spam
+        guessed_spam = 0.0
+
         # now we test the hypothesis against the test set
         for row in test_set:
 
@@ -80,14 +91,43 @@ def case2():
             else:
                 misses += 1
 
+            if (row[SPAM_ATTR_INDEX] == 1) and (guess == 1):
+                    correctly_is_spam += 1
+                    is_spam += 1
+                    guessed_spam += 1
+            elif row[SPAM_ATTR_INDEX] == 1:
+                is_spam += 1
+            elif guess == 1:
+                guessed_spam += 1
+
+        #accuracy = number of correctly evaluated instances/
+        #           number of instances
+        #
+        #precision = number of correctly evaluated instances as spam/
+        #            number of spam instances
+        #
+        #recall = number of correctly evaluated instances as spam/
+        #         number of evaluated instances como spam
+
         accuracy = hits/(hits+misses)
+        precision = correctly_is_spam/is_spam
+        recall = correctly_is_spam/guessed_spam
 
         accuracy_in_each_turn.append(accuracy)
+        precision_in_each_turn.append(precision)
+        recall_in_each_turn.append(recall)
 
     mean_accuracy = np.mean(accuracy_in_each_turn)
     std_dev_accuracy = np.std(accuracy_in_each_turn)
     variance_accuracy = np.var(accuracy_in_each_turn)
 
+    mean_precision = np.mean(precision_in_each_turn)
+    std_dev_precision = np.std(precision_in_each_turn)
+    variance_precision = np.var(precision_in_each_turn)
+
+    mean_recall = np.mean(recall_in_each_turn)
+    std_dev_recall = np.std(recall_in_each_turn)
+    variance_recall = np.var(recall_in_each_turn)
 
     print ''
     print 'CASE 2 - TEN ATTRIBUTES - USING NORMAL MODEL'
@@ -95,5 +135,12 @@ def case2():
     print 'STD. DEV. OF ACCURACY: '+str(std_dev_accuracy)
     print 'VARIANCE OF ACCURACY: '+str(variance_accuracy)
     print ''
+    print 'MEAN_PRECISION: '+str(mean_precision)
+    print 'STD. DEV. OF PRECISION: '+str(std_dev_precision)
+    print 'VARIANCE OF PRECISION: '+str(variance_precision)
+    print ''
+    print 'MEAN_RECALL: '+str(mean_recall)
+    print 'STD. DEV. OF RECALL: '+str(std_dev_recall)
+    print 'VARIANCE OF RECALL: '+str(variance_recall)
 
 case2()    
