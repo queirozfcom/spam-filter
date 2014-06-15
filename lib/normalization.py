@@ -12,6 +12,11 @@ def normalize(matrix,target_attribute_index):
             feature_max = max(column)
             feature_min = min(column)
 
+            # seach element in column gets replaced by its normalized version
+            # using the maximum and minimum values, according to the following expression:
+            #
+            # new_value = (old_value - maximum_value) / (maximum_value - minimum_value)
+            #
             normalized_column = map(lambda element: round( ( (element-feature_min)/(feature_max-feature_min) ),5), column)
 
             for idx,row in enumerate(matrix):
