@@ -11,7 +11,7 @@ import lib.validation as valid
 from config.constants import *
 
 
-def case1():
+def case1(index):
 
     accuracy_in_each_turn = list()
     precision_in_each_turn = list()
@@ -35,13 +35,13 @@ def case1():
         train_set,test_set = prep.split_sets(shuffled,TRAIN_TEST_RATIO,i)
 
         #parameter estimation
-        sample_mean_word_spam = nb.take_mean_spam(train_set,CASE_1_ATTRIBUTE_INDEX,SPAM_ATTR_INDEX)
+        sample_mean_word_spam = nb.take_mean_spam(train_set,index,SPAM_ATTR_INDEX)
 
-        sample_mean_word_ham = nb.take_mean_ham(train_set,CASE_1_ATTRIBUTE_INDEX,SPAM_ATTR_INDEX)
+        sample_mean_word_ham = nb.take_mean_ham(train_set,index,SPAM_ATTR_INDEX)
 
-        sample_variance_word_spam = nb.take_variance_spam(train_set,CASE_1_ATTRIBUTE_INDEX,SPAM_ATTR_INDEX)
+        sample_variance_word_spam = nb.take_variance_spam(train_set,index,SPAM_ATTR_INDEX)
 
-        sample_variance_word_ham = nb.take_variance_ham(train_set,CASE_1_ATTRIBUTE_INDEX,SPAM_ATTR_INDEX)
+        sample_variance_word_ham = nb.take_variance_ham(train_set,index,SPAM_ATTR_INDEX)
 
         #sample standard deviations from sampe variance
         sample_std_dev_spam = sample_variance_word_spam ** (1/2.0)
@@ -65,9 +65,9 @@ def case1():
         for row in test_set:
             
             # nao precisa dividir pelo termo de normalizacao pois so queremos saber qual e o maior!
-            posterior_spam = prior_spam * stats.norm(sample_mean_word_spam, sample_std_dev_spam).pdf(row[CASE_1_ATTRIBUTE_INDEX])
+            posterior_spam = prior_spam * stats.norm(sample_mean_word_spam, sample_std_dev_spam).pdf(row[index])
 
-            posterior_ham = prior_ham * stats.norm(sample_mean_word_ham, sample_std_dev_ham).pdf(row[CASE_1_ATTRIBUTE_INDEX])
+            posterior_ham = prior_ham * stats.norm(sample_mean_word_ham, sample_std_dev_ham).pdf(row[index])
     
             # whichever is greater - that will be our prediction
             if posterior_spam > posterior_ham:
@@ -88,9 +88,6 @@ def case1():
                 is_spam += 1
             elif guess == 1:
                 guessed_spam += 1
-
-            
-
             
 
         #accuracy = number of correctly evaluated instances/
@@ -140,7 +137,7 @@ def case1():
     print 'STD. DEV. OF RECALL: '+str(round(std_dev_recall,5))
     print 'VARIANCE OF RECALL: '+str(round(variance_recall,8))
 
-case1()
+case1(CASE_1_ATTRIBUTE_INDEX)
 
 
 
