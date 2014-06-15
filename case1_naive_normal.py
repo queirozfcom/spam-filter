@@ -64,7 +64,6 @@ def case1(index=CASE_1_ATTRIBUTE_INDEX,output=True,ret='accuracy'):
         #total number of instances evaluated as spam
         guessed_spam = 0.0
 
-
         #number of instances correctly evaluated as ham
         correctly_is_ham = 0.0
 
