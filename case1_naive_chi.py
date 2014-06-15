@@ -17,7 +17,7 @@ def case1():
     precision_in_each_turn = list()
     recall_in_each_turn = list()
 
-    m = np.loadtxt(open("original_data/spambase.data","rb"),delimiter=',')
+    m = np.loadtxt(open("resources/normalized_data.csv","rb"),delimiter=',')
 
     shuffled = np.random.permutation(m)
 

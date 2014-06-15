@@ -10,8 +10,6 @@ from case1_naive_cauchy import case1 as case1_cauchy
 from case1_naive_gumbel_l import case1 as case1_gumbel_l
 from case1_naive_laplace import case1 as case1_laplace
 
-# def which attribute_bernoulli():
-
 def which_attribute_utility_normal():
 
 	highest_accuracy = 0.0

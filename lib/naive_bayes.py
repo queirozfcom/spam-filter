@@ -1,10 +1,3 @@
-# def take_p_char_spam(data_matrix,char_index,spam_index):
-#     # probability of e-mail having a char given that it's spam
-#     spam_having_char = len(filter(lambda x: x[char_index] != 0 and x[spam_index] == 1 ,data_matrix))
-#     spam = len(filter(lambda x: x[spam_index] == 1 ,data_matrix))
-     
-#     return (float(spam_having_char)/float(spam))
-
 def take_p_spam(data_matrix,spam_index):
     # probabilily that an e-mail is spam
     spam = len(filter(lambda x: x[spam_index] == 1 ,data_matrix))
@@ -47,12 +40,6 @@ def take_p_attribute(data_matrix,attribute_index,spam_index):
     p_ham = 1 - p_spam
 
     return (p_attribute_spam * p_spam) + (p_attribute_ham * p_ham) 
-
-# def attribute_in_row(row,attribute_index):
-#     return (row[attribute_index] != 0)
-
-# def attribute_not_in_row(row,attribute_index):
-#     return not attribute_in_row(row,attribute_index)
 
 def take_mean_spam(data,attribute_index,spam_attr_index):
     return take_mean(data,attribute_index,spam_attr_index,1)
