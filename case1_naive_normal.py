@@ -123,19 +123,22 @@ def case1():
     variance_recall = np.var(recall_in_each_turn)
 
 
+    print "\033[1;32m"
+    print '============================================='
+    print 'CASE 1 - ONE ATTRIBUTE - USING NORMAL MODEL'
+    print '============================================='
+    print "\033[00m"
+    print 'MEAN_ACCURACY: '+str(round(mean_accuracy,5))
+    print 'STD. DEV. OF ACCURACY: '+str(round(std_dev_accuracy,5))
+    print 'VARIANCE OF ACCURACY: '+str(round(variance_accuracy,8))
     print ''
-    print 'CASE 1 - ONE ATTRIBUTE ONLY - USING NORMAL MODEL'
-    print 'MEAN_ACCURACY: '+str(mean_accuracy)
-    print 'STD. DEV. OF ACCURACY: '+str(std_dev_accuracy)
-    print 'VARIANCE OF ACCURACY: '+str(variance_accuracy)
+    print 'MEAN_PRECISION: '+str(round(mean_precision,5))
+    print 'STD. DEV. OF PRECISION: '+str(round(std_dev_precision,5))
+    print 'VARIANCE OF PRECISION: '+str(round(variance_precision,8))
     print ''
-    print 'MEAN_PRECISION: '+str(mean_precision)
-    print 'STD. DEV. OF PRECISION: '+str(std_dev_precision)
-    print 'VARIANCE OF PRECISION: '+str(variance_precision)
-    print ''
-    print 'MEAN_RECALL: '+str(mean_recall)
-    print 'STD. DEV. OF RECALL: '+str(std_dev_recall)
-    print 'VARIANCE OF RECALL: '+str(variance_recall)
+    print 'MEAN_RECALL: '+str(round(mean_recall,5))
+    print 'STD. DEV. OF RECALL: '+str(round(std_dev_recall,5))
+    print 'VARIANCE OF RECALL: '+str(round(variance_recall,8))
 
 case1()
 

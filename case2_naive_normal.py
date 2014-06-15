@@ -131,21 +131,21 @@ def case2():
     std_dev_recall = np.std(recall_in_each_turn)
     variance_recall = np.var(recall_in_each_turn)
 
-    print ''
+    print "\033[1;32m"
     print '============================================='
     print 'CASE 2 - TEN ATTRIBUTES - USING NORMAL MODEL'
     print '============================================='
-    print ''
+    print "\033[00m"
     print 'MEAN_ACCURACY: '+str(round(mean_accuracy,5))
     print 'STD. DEV. OF ACCURACY: '+str(round(std_dev_accuracy,5))
-    print 'VARIANCE OF ACCURACY: '+str(round(variance_accuracy,5))
+    print 'VARIANCE OF ACCURACY: '+str(round(variance_accuracy,8))
     print ''
     print 'MEAN_PRECISION: '+str(round(mean_precision,5))
     print 'STD. DEV. OF PRECISION: '+str(round(std_dev_precision,5))
-    print 'VARIANCE OF PRECISION: '+str(round(variance_precision,5))
+    print 'VARIANCE OF PRECISION: '+str(round(variance_precision,8))
     print ''
     print 'MEAN_RECALL: '+str(round(mean_recall,5))
     print 'STD. DEV. OF RECALL: '+str(round(std_dev_recall,5))
-    print 'VARIANCE OF RECALL: '+str(round(variance_recall,5))
+    print 'VARIANCE OF RECALL: '+str(round(variance_recall,8))
 
 case2()    
