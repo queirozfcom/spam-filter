@@ -35,8 +35,8 @@ def case3(output=True):
         train_set,test_set = prep.split_sets(shuffled,TRAIN_TEST_RATIO,i)
 
 
-        numerator_product_spam = reduce(lambda acc,elem: acc * nb.take_p_attribute_spam(train_set,elem,SPAM_ATTR_INDEX) ,xrange(57),1)
-        numerator_product_ham = reduce(lambda acc,elem: acc * nb.take_p_attribute_ham(train_set,elem,SPAM_ATTR_INDEX) ,xrange(57),1)
+        numerator_product_spam = reduce(lambda acc,elem: acc * nb.take_p_attribute_spam(train_set,elem,SPAM_ATTR_INDEX) ,xrange(54),1)
+        numerator_product_ham = reduce(lambda acc,elem: acc * nb.take_p_attribute_ham(train_set,elem,SPAM_ATTR_INDEX) ,xrange(54),1)
 
         prior_spam = nb.take_p_spam(train_set,SPAM_ATTR_INDEX)
         prior_ham = nb.take_p_ham(train_set,SPAM_ATTR_INDEX)
@@ -79,7 +79,7 @@ def case3(output=True):
         # now we test the hypothesis against the test set
         for row in test_set:
 
-            for j in list(range(57)):
+            for j in list(range(54)):
                 
                 # if the attribute isn't there, then our actual guess is the opposite of the calculated guess
                 if (row[j] == 0) and (guess == 0):
