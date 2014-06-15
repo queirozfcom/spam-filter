@@ -3,20 +3,9 @@
 NUMBER_OF_ROUNDS = 5
 
 # 0-based
-CASE_1_ATTRIBUTE_INDEX = 23 # word = 'money'
+CASE_1_ATTRIBUTE_INDEX = 52
 
-# chosen analyzed words:
-#   order       - 8
-#   receive     - 10
-#   will        - 11
-#   addresses   - 14
-#   free        - 15
-#   business    - 16
-#   email       - 17
-#   credit      - 19
-#   money       - 23
-#   lab         - 28
-CASE_2_ATTRIBUTE_INDEXES = [8,10,11,14,15,16,17,19,23,28]
+CASE_2_ATTRIBUTE_INDEXES = [52,6,22,23,55,15,10,19,16,14]
 
 
 # 0-based

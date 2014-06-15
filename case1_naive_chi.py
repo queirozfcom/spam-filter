@@ -89,10 +89,6 @@ def case1():
             elif guess == 1:
                 guessed_spam += 1
 
-            
-
-            
-
         #accuracy = number of correctly evaluated instances/
         #           number of instances
         #
