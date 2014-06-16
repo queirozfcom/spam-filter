@@ -22,7 +22,7 @@ def case1(index= CASE_1_ATTRIBUTE_INDEX, output=True,ret='accuracy'):
     precision_in_each_turn_ham = list()
     recall_in_each_turn_ham = list()
 
-    m = np.loadtxt(open("resources/normalized_data.csv","rb"),delimiter=',')
+    m = np.loadtxt(open("resources/binarized_data.csv","rb"),delimiter=',')
 
     shuffled = np.random.permutation(m)
 
